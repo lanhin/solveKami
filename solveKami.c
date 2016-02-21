@@ -10,13 +10,13 @@
 
 /* Create matrix, to store color values*/
 int create_matrix(){
-    matrix = NULL;
-    matrix = (char *)malloc((xlength * ylength + 1) * sizeof(char));
-    if(matrix == NULL){
-      printf("ERROR: cannot allocate space for matrix!\n");
-      exit(1);
-    }
-    return 0;
+  matrix = NULL;
+  matrix = (char *)malloc((xlength * ylength + 1) * sizeof(char));
+  if(matrix == NULL){
+    printf("ERROR: cannot allocate space for matrix!\n");
+    exit(1);
+  }
+  return 0;
 }
 
 /* full in the matrix with color */
@@ -44,19 +44,19 @@ int show_matrix(){
     putchar('\n');
   }
   /*
-  for (int i = 0; i < xlength*ylength; ++i){
+    for (int i = 0; i < xlength*ylength; ++i){
     putchar(matrix[i]);
-  }*/
+    }*/
 }
 
 /* Free the allocated space for matrix. To avoid memory leak. */
 int destory_matrix(){
-    free(matrix);
-    #if 0
-    if (DEBUG)
-      printf("Matrix destoryed!\n");
-    #endif
-    return 0;
+  free(matrix);
+#if 0
+  if (DEBUG)
+    printf("Matrix destoryed!\n");
+#endif
+  return 0;
 }
 
 /* Create location bit vector */
@@ -73,10 +73,10 @@ int * create_loc_bits(){
 /* Destory location bits, free the space. */
 int destory_loc_bits(int * bits){
   free(bits);
-  #if 0
+#if 0
   if (DEBUG)
     printf ("Location bits destoryed!\n");
-  #endif
+#endif
   return 0;
 }
 
@@ -153,10 +153,10 @@ int create_location_stack(){
 /* Destory location stack, free the allocated space. */
 int destory_location_stack(){
   free(location_stack);
-  #if 0
+#if 0
   if (DEBUG)
     printf("Location stack destoryed!\n");
-  #endif
+#endif
 }
 
 /* Push operation for location stack. */
@@ -325,38 +325,38 @@ int calculate_a_block(color_block * an_empty_block, int index){
   bottom_one_node = bottom_node(node_index);
   /* The folllowing four "if"s deal with the check. */
   if ( (left_one_node != -1) && (matrix[left_one_node] == an_empty_block -> color)){
-    #if 0
+#if 0
     if (DEBUG){
       printf("Left node identified");
     }
-    #endif
+#endif
     location_stack_push(left_one_node);
     set_bits(tmp_bits, left_one_node);
   }
   if ( (right_one_node != -1) && (matrix[right_one_node] == an_empty_block -> color)){
-    #if 0
+#if 0
     if (DEBUG){
       printf("Right node identified");
     }
-    #endif
+#endif
     location_stack_push(right_one_node);
     set_bits(tmp_bits, right_one_node);
   }
   if ( (top_one_node != -1) && (matrix[top_one_node] == an_empty_block -> color)){
-    #if 0
+#if 0
     if (DEBUG){
       printf("Top node identified");
     }
-    #endif
+#endif
     location_stack_push(top_one_node);
     set_bits(tmp_bits, top_one_node);
   }
   if ( (bottom_one_node != -1) && (matrix[bottom_one_node] == an_empty_block -> color)){
-    #if 0
+#if 0
     if (DEBUG){
       printf("Bottom node identified");
     }
-    #endif
+#endif
     location_stack_push(bottom_one_node);
     set_bits(tmp_bits, bottom_one_node);
   }
@@ -374,20 +374,20 @@ int calculate_a_block(color_block * an_empty_block, int index){
 
     /* Check the nodes of four directions. */
     if ( (left_one_node != -1) && (matrix[left_one_node] == an_empty_block -> color) && !(test_bits_single(tmp_bits, left_one_node)) ){
-    location_stack_push(left_one_node);
-    set_bits(tmp_bits, left_one_node);
+      location_stack_push(left_one_node);
+      set_bits(tmp_bits, left_one_node);
     }
     if ( (right_one_node != -1) && (matrix[right_one_node] == an_empty_block -> color) && !(test_bits_single(tmp_bits, right_one_node)) ){
-    location_stack_push(right_one_node);
-    set_bits(tmp_bits, right_one_node);
+      location_stack_push(right_one_node);
+      set_bits(tmp_bits, right_one_node);
     }
     if ( (top_one_node != -1) && (matrix[top_one_node] == an_empty_block -> color) && !(test_bits_single(tmp_bits, top_one_node)) ){
-    location_stack_push(top_one_node);
-    set_bits(tmp_bits, top_one_node);
+      location_stack_push(top_one_node);
+      set_bits(tmp_bits, top_one_node);
     }
     if ( (bottom_one_node != -1) && (matrix[bottom_one_node] == an_empty_block -> color) && !(test_bits_single(tmp_bits, bottom_one_node)) ){
-    location_stack_push(bottom_one_node);
-    set_bits(tmp_bits, bottom_one_node);
+      location_stack_push(bottom_one_node);
+      set_bits(tmp_bits, bottom_one_node);
     }
   }
   return number_of_nodes_in_this_block;
@@ -470,11 +470,11 @@ color_memory *  create_color_memory(int flag){
 int destory_color_memory(color_memory * color_memory_manager_local){
   free(color_memory_manager_local -> all_the_colors);
   free(color_memory_manager_local -> counters_of_colors);
-  #if 0
+#if 0
   if (DEBUG){
     printf ("Color memory manager destoryed!\n");
   }
-  #endif
+#endif
   return 0;
 }
 
@@ -546,12 +546,12 @@ int run_one_round(){
   printf ("Step %d:location: %d, %d. Color: %c \n", step_num, index % xlength, index / xlength, best_color);
   do_real_change(best_block, best_color);//change the color blocks
 
-  #if 0
+#if 0
   if (DEBUG){
     show_color_blocks(matrix_color_blocks);
     show_color_mem(color_memory_manager);
   }
-  #endif
+#endif
   
   return 0;
 }
@@ -610,13 +610,13 @@ int min_weight_of_one_block(color_block * color_block_pointer, char * color_poin
 /* Do real change to the color blocks. Ready for the next round of running. */
 int do_real_change(color_block * best_block, char best_color){
   /* Calculate the adjacent bit vector of color_block_pointer's. */
-  #if 0
+#if 0
   if (DEBUG){
     printf ("do_real_change start...\n");
     printf ("best color: %c  best_block:\n", best_color);
     show_bits(best_block -> location_bits);
   }
-  #endif
+#endif
   
   clrall_bits(tmp_bits_adjacency);
   set_adjacent_nodes(tmp_bits_adjacency, best_block -> location_bits);
@@ -638,12 +638,12 @@ int do_real_change(color_block * best_block, char best_color){
     }
     
     if ( (has_common_bits(tmp_bits_adjacency, to_check_pointer -> location_bits)) && (to_check_pointer -> color == best_color) ){
-      #if 0
+#if 0
       if (DEBUG){
 	printf ("common bits with: ");
 	show_bits(to_check_pointer -> location_bits);
       }
-      #endif
+#endif
       total_blocks --;
       color_mem_decrese(color_memory_manager, best_color);
       
@@ -765,7 +765,7 @@ int main(int argc, char * argv[]){
     show_matrix();
   }
   
-  #if 0
+#if 0
   if(DEBUG){
     location_stack_push(0);
     location_stack_push(10);
@@ -778,7 +778,7 @@ int main(int argc, char * argv[]){
       printf ("%d ", location_stack_pop());
     }
   }
-  #endif
+#endif
 
   matrix_color_blocks = init_color_blocks();
   
@@ -786,19 +786,19 @@ int main(int argc, char * argv[]){
     show_mem_tatalvars();
   }
   
-  #if 0
+#if 0
   if (DEBUG){
     show_color_blocks(matrix_color_blocks);
   }
-  #endif
+#endif
 
-  #if 0
+#if 0
   if (DEBUG){
     show_color_mem(color_memory_manager);
     printf ("total blocks: %d\n", total_blocks);
     printf ("total colors: %d\n", total_colors);
   }
-  #endif
+#endif
 
   while ( total_colors > 1 ){
     run_one_round();
